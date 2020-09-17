@@ -1,0 +1,15 @@
+body .button {
+    background-color: green;
+    color: white;
+  }
+  
+  body .Avatar {
+    color: white;
+    width: 3cm;
+    height: 3cm;
+  }
+  
+  body .icon {
+      width: 2.5cm;
+    height: 2.5cm;
+  }
