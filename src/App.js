@@ -4,6 +4,7 @@ import { User } from './components/userComponent/User';
 import { NewTask } from './components/NewTask';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
+import { Registration } from './components/Registration component/Registration';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route exact path="/" component={LoginView} />
             <Route path="/user" component={UserView} />
             <Route path="/NewTask" component={TaskView} />
+            <Route path="/Registration" component={RegistView} />
           </Switch>
         </div>
       </div>
@@ -37,6 +39,13 @@ const TaskView = () => (
 const UserView = () => (
   <div>
     <User />
+  </div>
+);
+
+
+const RegistView = () => (
+  <div>
+    <Registration />
   </div>
 );
 

@@ -44,6 +44,10 @@ export class DrawerMenu extends React.Component {
         window.location.href = "/NewTask"
     }
 
+    RegistrationView = (event) => {
+        window.location.href = "/Registration"
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -87,7 +91,7 @@ export class DrawerMenu extends React.Component {
                                 <ListItem
                                     button
                                     key="Registration"
-                                    onClick={this.UserView}
+                                    onClick={this.RegistrationView}
                                 >
                                     <ListItemIcon>
                                         <EditIcon htmlColor="black" className='EditIcon'/>

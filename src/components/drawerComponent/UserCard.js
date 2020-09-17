@@ -11,7 +11,7 @@ export class UserCard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {name: 'Juan Felipe Mora', correo:'juanmora@gmail.com'}
+        this.state = {name: 'Juan Felipe Mora', correo:'mora@mail.com'}
     }
 
     render() {
