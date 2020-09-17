@@ -30,8 +30,8 @@ export class UserCard extends React.Component {
                                 <MoreVertIcon/>
                             </IconButton>
                         }
-                        title={this.state.name}
-                        subheader= {this.state.correo}
+                        title={localStorage.getItem("name") === null? this.state.name : localStorage.getItem("name")}
+                        subheader= {localStorage.getItem("correo") === null? this.state.correo : localStorage.getItem("correo")}
                     />
                 </Card>
 

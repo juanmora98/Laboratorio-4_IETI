@@ -9,12 +9,7 @@ export class Registration extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            name: '',
-            correo: '',
-            contrasenia: '',
-            contraseniaC: ''
-        };
+        this.state = { name: "", correo: "", contrasenia: "", contraseniaC: ""};
 
         this.handleNameChange = this.handleNameChange.bind(this);
 
@@ -24,53 +19,48 @@ export class Registration extends React.Component {
 
         this.handleContraseniaCChange = this.handleContraseniaCChange.bind(this);
 
-    }
+        this.handleSubmit = this.handleSubmit.bind(this);
 
-    
+    }
 
     handleNameChange(e) {
         this.setState({
-            responsible: {name: e.target.value}
+            name: e.target.value
         });
     }
 
     handleCorreoChange(e) {
         this.setState({
-            description: e.target.value
+            correo: e.target.value
         });
     }
 
 
     handleContraseniaChange(e) {
         this.setState({
-            status: e.target.value
+            contrasenia: e.target.value
         });
     }
 
     handleContraseniaCChange(e) {
         this.setState({
-            status: e.target.value
+            contraseniaC: e.target.value
         });
     }
 
 
     handleSubmit(e) {
         e.preventDefault();
-
-        if (!this.state.description.length || !this.state.responsible.name.length || !this.state.status.length){
-            alert("Llene todos los espacios");
-            return;
-        }
-        if(localStorage.getItem("targetas") === null){
-            var targetas = [this.state];
-            localStorage.setItem("targetas", JSON.stringify(targetas));
+        if(this.state.contrasenia === this.state.contraseniaC){
+            localStorage.setItem("name",this.state.name);
+            localStorage.setItem("correo",this.state.correo);
+            window.location.href = "/user";
         }
         else{
-            let targetas = JSON.parse(localStorage.getItem("targetas"));
-            targetas.push(this.state);
-            localStorage.setItem("targetas", JSON.stringify(targetas));
+            alert("las contraseñas no son iguales");
+            return;
         }
-        window.location.href = "/user";
+        
     }
 
 
@@ -116,7 +106,7 @@ export class Registration extends React.Component {
                             label="contrasenia"
                             autoComplete="contrasenia"
                             variant="outlined"
-                            onChange={this.handleContraseniaCChange}
+                            onChange={this.handleContraseniaChange}
                             value={this.state.contrasenia}
                         />
                     </FormControl>
@@ -128,7 +118,7 @@ export class Registration extends React.Component {
                         type="contraseniaC"
                         variant="outlined"
                         label="contraseniaC"
-                        onChange={this.handleContraseniaChange}
+                        onChange={this.handleContraseniaCChange}
                         value={this.state.contraseniaC}
                     />
                     </FormControl>
@@ -139,7 +129,7 @@ export class Registration extends React.Component {
                             color="primary"
                             className="submit"
                             onClick={this.handleSubmit}>
-                        Add
+                        Edit
                     </Button>
                 </div>
             </div>
