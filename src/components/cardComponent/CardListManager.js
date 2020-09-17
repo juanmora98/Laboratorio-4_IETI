@@ -20,7 +20,6 @@ export class CardListManager extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
             description: '',
             responsible: {name: '', email: ''},
             status: '',
@@ -66,22 +65,19 @@ export class CardListManager extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        if (!this.state.description.length || !this.state.responsible.name.length || !this.state.status.length)
+        if (!this.state.description.length || !this.state.responsible.name.length || !this.state.status.length){
             return;
-
-        const newItem = {
-            description: this.state.description,
-            responsible: this.state.responsible,
-            status: this.state.status,
-            dueDate: this.state.dueDate,
-
-        };
-        this.setState(prevState => ({
-            items: prevState.items.concat(newItem),
-            description: '',
-            status: '',
-            dueDate: ''
-        }));
+        }
+        if(localStorage.getItem("targetas") === null){
+            var targetas = [this.state];
+            localStorage.setItem("targetas", JSON.stringify(targetas));
+        }
+        else{
+            let targetas = JSON.parse(localStorage.getItem("targetas"));
+            targetas.push(this.state);
+            localStorage.setItem("targetas", JSON.stringify(targetas));
+        }
+        window.location.href = "/user";
     }
 
     render() {
@@ -157,7 +153,7 @@ export class CardListManager extends React.Component {
                 </div>
                 <br/>
                 <br/>
-                <CardList items={this.state.items}/>
+
             </div>
         );
     }

@@ -2,6 +2,10 @@
 FIREBASE: https://laboratorio-3-ieti.firebaseapp.com
 
 
+## USUARIO Y CONTRASEÑA##
+- Usuario: mora@mail.com
+- Contraseña: 123
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

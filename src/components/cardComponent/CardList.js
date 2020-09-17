@@ -2,6 +2,9 @@ import React from 'react';
 import {TaskCard} from './TaskCard'
 import Grid from '@material-ui/core/Grid';
 import './TaskCard.css';
+import "../cardComponent/CardList.css";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
 
 export class CardList extends React.Component {
 
@@ -24,11 +27,11 @@ export class CardList extends React.Component {
 
     return (
 
-        <div>
-            <Grid container spacing={4} className="grid-container">
-                {CardList}
-            </Grid >
-        </div>
+        <div className="root">
+        <GridList cellHeight={160} className="gridList" cols={3}>
+          {CardList}
+        </GridList>
+      </div>
     );
 
 

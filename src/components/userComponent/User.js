@@ -22,8 +22,12 @@ export class User extends React.Component {
             <header>
                 <div>
                     <DrawerMenu/>
-                    <CardListManager/>
+                    
                 </div>
+                <CardList items={
+                        localStorage.getItem("targetas") === null
+                        ? []
+                        : JSON.parse(localStorage.getItem("targetas"))}/>
             </header>
             
         );
