@@ -1,6 +1,7 @@
 import React from 'react';
 import { Login } from './components/loginComponent/Login';
 import { User } from './components/userComponent/User';
+import { NewTask } from './components/NewTask';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 
@@ -12,7 +13,8 @@ function App() {
         <div>
           <Switch>
             <Route exact path="/" component={LoginView} />
-            <Route exact path="/user" component={UserView} />
+            <Route path="/user" component={UserView} />
+            <Route path="/NewTask" component={TaskView} />
           </Switch>
         </div>
       </div>
@@ -23,6 +25,12 @@ function App() {
 const LoginView = () => (
   <div>
     <Login />
+  </div>
+);
+
+const TaskView = () => (
+  <div>
+    <NewTask />
   </div>
 );
 

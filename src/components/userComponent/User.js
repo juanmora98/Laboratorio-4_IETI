@@ -2,6 +2,7 @@ import React from 'react';
 import './User.css';
 import { DrawerMenu } from '../drawerComponent/DrawerMenu';
 import { CardListManager } from '../cardComponent/CardListManager';
+import {CardList} from "../cardComponent/CardList";
 
 export class User extends React.Component {
 
@@ -10,7 +11,7 @@ export class User extends React.Component {
     }
 
     componentDidMount() {
-        if(!localStorage.getItem('User') && !localStorage.getItem('Password')){
+        if(!localStorage.getItem("User") && !localStorage.getItem("Password")){
           window.location.href = "/"
         }
     }

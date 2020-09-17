@@ -11,17 +11,22 @@ export class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {mail: '' , password: ''};
-        this.email = '';
+        this.state = {mail: "" , password: ""};
         this.handleMail = this.handleMail.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(e) {
+        const user = "mora@mail.com";
+        const pass = "123";
         e.preventDefault();
-        localStorage.setItem('User', this.state.mail);
-        localStorage.setItem('Password', this.state.password);
+        if (this.state.mail !== user || this.state.password !== pass) {
+            alert("Correo o password incorrecto");
+            return;
+        }
+        localStorage.setItem("User", this.state.email);
+        localStorage.setItem("Password", this.state.password);
         window.location.href = "/user";
     }
 
@@ -36,18 +41,6 @@ export class Login extends React.Component {
             password: e.target.value
         });
     }
-
-    componentDidMount() {
-        if(localStorage.getItem('User') && localStorage.getItem('Password')){
-            this.setState({
-                mail: localStorage.getItem('User'),
-                password: localStorage.getItem('Password')
-            });
-        }
-    }
-
-    
-
 
     render(){
         return(

@@ -6,8 +6,13 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from "@material-ui/core/FormControl";
+import Grid from '@material-ui/core/Grid';
+import { NativeSelect } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import './TaskCard.css'
+import './TaskCard.css';
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import { MuiPickersUtilsProvider, KeyboardDatePicker} from "@material-ui/pickers";
 
 
 export class CardListManager extends React.Component {
@@ -19,10 +24,12 @@ export class CardListManager extends React.Component {
             description: '',
             responsible: {name: '', email: ''},
             status: '',
-            dueDate: moment()
+            dueDate: new Date("2020-09-17T21:11:54")
         };
 
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+
+        this.handleNameChange = this.handleNameChange.bind(this);
 
         this.handleStatusChange = this.handleStatusChange.bind(this);
 
@@ -52,20 +59,20 @@ export class CardListManager extends React.Component {
 
     handleDateChange(date) {
         this.setState({
-            dueDate: moment(date.target.value)
+            dueDate: date
         });
     }
 
     handleSubmit(e) {
         e.preventDefault();
 
-        if (!this.state.description.length || !this.state.status.length || !this.state.dueDate)
+        if (!this.state.description.length || !this.state.responsible.name.length || !this.state.status.length)
             return;
 
         const newItem = {
             description: this.state.description,
-            status: this.state.status,
             responsible: this.state.responsible,
+            status: this.state.status,
             dueDate: this.state.dueDate,
 
         };
@@ -85,7 +92,7 @@ export class CardListManager extends React.Component {
                 <div className="todo-form">
                     <h3>Task Manager</h3>
 
-                    <FormControl margin="normal" required fullWidth>
+                    <FormControl margin="normal" required>
                         <TextField
                             id="text"
                             label="Description"
@@ -97,44 +104,50 @@ export class CardListManager extends React.Component {
                     </FormControl>
                     <br/>
                     <br/>
-                    <FormControl margin="normal" required fullWidth>
+                    <FormControl margin="normal" required>
                     <TextField
                         id="Responsable"
                         type="text"
                         variant="outlined"
                         label="Responsable"
-                        onChange={handleResponsable}
-                        value={state.responsible.name}
+                        onChange={this.handleNameChange}
+                        value={this.state.responsible.name}
                     />
                     </FormControl>
-                    <FormControl margin="normal" required fullWidth>
-                        <InputLabel htmlFor="component-outlined">
-                            Status:
-                        </InputLabel>
-                        <Input id="status" name="status"
-                               autoComplete="status" autoFocus
-                               value={this.state.status}
-                               onChange={this.handleStatusChange}/>
-                    </FormControl>
 
-                    <br/>
-                    <br/>
-                    <TextField
-                        id="date"
-                        label="Due date"
-                        type="date"
-                        defaultValue="2020-01-01"
-                        InputLabelProps={{shrink: true, required: true}}
-                        onChange={this.handleDateChange}
-                        fullWidth
-                    />
+                    <Grid 
+                        container 
+                        alignItems="center"
+                        justify="center"
+                        style={{ minHeight: '10vh'}}>
+                    <InputLabel>Status :</InputLabel>
+                    <NativeSelect 
+                        value={this.state.status}
+                        onChange={this.handleStatusChange}
+                        >
+                        <option value=""> </option>
+                        <option value={"Ready"}>Ready</option>
+                        <option value={"In Progress"}>In Progress</option>
+                        <option value={"Done"}>Done</option>
+                    </NativeSelect>
+                    </Grid>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                            margin="normal"
+                            id="dueDate"
+                            label="dueDate"
+                            format="MM/dd/yyyy"
+                            value={this.state.dueDate}
+                            onChange={this.handleDateChange}
+                            KeyboardButtonProps={{
+                            "aria-label": "change date"
+                            }}
+                        />
+                    </MuiPickersUtilsProvider>
 
-                    <br/>
-                    <Divider variant="fullWidth"/>
                     <br/>
                     <br/>
                     <Button type="submit"
-                            fullWidth
                             variant="contained"
                             color="primary"
                             className="submit"
